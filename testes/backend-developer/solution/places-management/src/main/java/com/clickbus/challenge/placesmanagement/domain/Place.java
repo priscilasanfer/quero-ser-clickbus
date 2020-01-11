@@ -1,5 +1,8 @@
 package com.clickbus.challenge.placesmanagement.domain;
 
+import com.google.common.base.MoreObjects;
+import com.google.common.base.Objects;
+import com.google.common.collect.ComparisonChain;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -24,7 +27,7 @@ import java.util.Date;
 @AllArgsConstructor
 @Entity
 @EntityListeners(AuditingEntityListener.class)
-public class Place {
+public class Place implements Comparable<Place> {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
@@ -48,4 +51,38 @@ public class Place {
 
     @LastModifiedDate
     private Date updatedAt;
+
+    @Override
+    public int compareTo(Place that) {
+        return ComparisonChain.start()
+                .compare(this.name, that.name)
+                .compare(this.id, that.id)
+                .result();
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Place)) return false;
+        Place place = (Place) o;
+        return Objects.equal(getId(), place.getId()) &&
+                Objects.equal(getName(), place.getName()) &&
+                Objects.equal(getCity(), place.getCity());
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hashCode(getId());
+    }
+
+    @Override
+    public String toString() {
+        return MoreObjects.toStringHelper(this)
+                .add("id", id)
+                .add("name", name)
+                .add("slug", slug)
+                .add("city", city)
+                .toString();
+    }
+
 }
