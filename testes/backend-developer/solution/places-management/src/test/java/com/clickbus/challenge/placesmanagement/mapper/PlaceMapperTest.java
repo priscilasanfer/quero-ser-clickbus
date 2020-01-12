@@ -3,7 +3,6 @@ package com.clickbus.challenge.placesmanagement.mapper;
 import com.clickbus.challenge.placesmanagement.domain.City;
 import com.clickbus.challenge.placesmanagement.domain.Place;
 import com.clickbus.challenge.placesmanagement.domain.State;
-import com.clickbus.challenge.placesmanagement.dto.request.PlaceRequest;
 import com.clickbus.challenge.placesmanagement.dto.response.PlaceResponse;
 import org.junit.jupiter.api.Test;
 
@@ -42,20 +41,6 @@ public class PlaceMapperTest {
         assertThat(placeResponse.getName(), is(place.getName()));
         assertThat(placeResponse.getSlug(), is(place.getSlug()));
         assertThat(placeResponse.getCity().getId(), is(place.getCity().getId()));
-    }
-
-    @Test
-    public void shouldMapPlaceRequestToPlace() {
-        PlaceRequest placeRequest = PlaceRequest.builder()
-                .name("Parque Ibirapuera")
-                .cityId(new Long(1))
-                .build();
-
-        Place place = PlaceMapper.INSTANCE.placeRequestToPlace(placeRequest);
-
-        assertThat(place.getName(), is(placeRequest.getName()));
-        assertThat(place.getCity().getId(), is(placeRequest.getCityId()));
-
     }
 
 }
