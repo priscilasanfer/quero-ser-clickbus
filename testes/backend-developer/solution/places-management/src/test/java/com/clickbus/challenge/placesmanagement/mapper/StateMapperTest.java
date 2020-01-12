@@ -21,7 +21,7 @@ class StateMapperTest {
                 .updatedAt(new Date())
                 .build();
 
-        StateResponse stateResponse = StateMapper.INSTANCE.stateToStateResponse( state );
+        StateResponse stateResponse = StateMapper.INSTANCE.stateToStateResponse(state);
 
         assertThat(stateResponse.getId(), is(state.getId()));
         assertThat(stateResponse.getName(), is(state.getName()));

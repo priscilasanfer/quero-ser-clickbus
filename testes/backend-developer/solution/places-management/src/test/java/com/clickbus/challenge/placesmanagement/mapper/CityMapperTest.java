@@ -28,7 +28,7 @@ class CityMapperTest {
                 .updatedAt(new Date())
                 .build();
 
-        CityResponse cityResponse = CityMapper.INSTANCE.cityToCityResponse( city );
+        CityResponse cityResponse = CityMapper.INSTANCE.cityToCityResponse(city);
 
         assertThat(cityResponse.getId(), is(city.getId()));
         assertThat(cityResponse.getName(), is(city.getName()));

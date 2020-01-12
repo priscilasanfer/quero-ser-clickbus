@@ -36,7 +36,7 @@ class PlaceMapperTest {
                 .updatedAt(new Date())
                 .build();
 
-        PlaceResponse placeResponse = PlaceMapper.INSTANCE.placeToPlaceResponse( place );
+        PlaceResponse placeResponse = PlaceMapper.INSTANCE.placeToPlaceResponse(place);
 
         assertThat(placeResponse.getId(), is(place.getId()));
         assertThat(placeResponse.getName(), is(place.getName()));
