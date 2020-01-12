@@ -34,7 +34,6 @@ public class PlaceController {
         return new ResponseEntity<>(PlaceResponse.builder()
                 .id(new Long(1))
                 .name(placeRequest.getName())
-                .slug(placeRequest.getSlug())
                 .city(CityResponse.builder()
                         .id(new Long(1))
                         .name("São Paulo")

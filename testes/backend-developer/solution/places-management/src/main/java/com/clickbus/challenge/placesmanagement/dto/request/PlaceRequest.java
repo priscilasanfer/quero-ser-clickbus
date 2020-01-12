@@ -18,10 +18,6 @@ public class PlaceRequest {
     @Size(min = 2, message = "Name must not be less than 2 characters")
     private String name;
 
-    @NotNull(message = "Slug cannot be null")
-    @Size(min = 2, message = "Slug must not be less than 2 characters")
-    private String slug;
-
     @NotNull(message = "CityId cannot be null")
     private Long cityId;
 
