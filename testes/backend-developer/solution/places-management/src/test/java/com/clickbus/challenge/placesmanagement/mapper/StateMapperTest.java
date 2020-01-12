@@ -10,7 +10,7 @@ import java.util.Date;
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;
 
-class StateMapperTest {
+public class StateMapperTest {
     @Test
     public void shouldMapStateToStateResponse() {
         State state = State.builder()

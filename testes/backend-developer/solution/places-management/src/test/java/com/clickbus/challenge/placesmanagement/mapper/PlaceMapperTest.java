@@ -12,7 +12,7 @@ import java.util.Date;
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;
 
-class PlaceMapperTest {
+public class PlaceMapperTest {
     @Test
     public void shouldMapPlaceToPlaceResponse() {
         Place place = Place.builder()

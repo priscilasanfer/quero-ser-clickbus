@@ -11,7 +11,7 @@ import java.util.Date;
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;
 
-class CityMapperTest {
+public class CityMapperTest {
     @Test
     public void shouldMapCityToCityResponse() {
         City city = City.builder()
