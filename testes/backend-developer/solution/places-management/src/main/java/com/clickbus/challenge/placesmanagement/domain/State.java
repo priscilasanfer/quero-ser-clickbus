@@ -5,7 +5,8 @@ import com.google.common.base.Objects;
 import com.google.common.collect.ComparisonChain;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
-import lombok.Getter;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
@@ -21,7 +22,8 @@ import javax.validation.constraints.Size;
 import java.util.Date;
 
 @Builder
-@Getter
+@Data
+@NoArgsConstructor
 @AllArgsConstructor
 @Entity
 @EntityListeners(AuditingEntityListener.class)

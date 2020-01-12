@@ -2,10 +2,12 @@ package com.clickbus.challenge.placesmanagement.dto.response;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
-import lombok.Getter;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Builder
-@Getter
+@Data
+@NoArgsConstructor
 @AllArgsConstructor
 public class CityResponse {
     private Long id;
