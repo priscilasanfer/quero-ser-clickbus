@@ -3,7 +3,6 @@ package com.clickbus.challenge.placesmanagement.service;
 import com.clickbus.challenge.placesmanagement.domain.State;
 import com.clickbus.challenge.placesmanagement.dto.request.StateRequest;
 import com.clickbus.challenge.placesmanagement.dto.response.StateResponse;
-import com.clickbus.challenge.placesmanagement.exception.ResourceNotFoundException;
 import com.clickbus.challenge.placesmanagement.mapper.StateMapper;
 import com.clickbus.challenge.placesmanagement.repository.StateRepository;
 import org.junit.Before;
@@ -12,6 +11,7 @@ import org.junit.runner.RunWith;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 import org.mockito.junit.MockitoJUnitRunner;
+import org.springframework.data.rest.webmvc.ResourceNotFoundException;
 
 import java.util.Date;
 import java.util.Optional;
