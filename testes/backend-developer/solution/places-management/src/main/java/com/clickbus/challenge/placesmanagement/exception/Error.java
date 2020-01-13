@@ -7,11 +7,4 @@ import lombok.Getter;
 @Getter
 public class Error {
     private String message;
-
-    @Override
-    public String toString() {
-        return "<Error>" +
-                "<message>" + message + "</message>" +
-                "</Error>";
-    }
 }
