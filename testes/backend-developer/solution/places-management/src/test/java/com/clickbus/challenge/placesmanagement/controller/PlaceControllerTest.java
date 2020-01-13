@@ -4,7 +4,6 @@ import com.clickbus.challenge.placesmanagement.dto.request.PlaceRequest;
 import com.clickbus.challenge.placesmanagement.dto.response.CityResponse;
 import com.clickbus.challenge.placesmanagement.dto.response.PlaceResponse;
 import com.clickbus.challenge.placesmanagement.dto.response.StateResponse;
-import com.clickbus.challenge.placesmanagement.exception.Error;
 import com.clickbus.challenge.placesmanagement.exception.ResponseEntityExceptionHandler;
 import com.clickbus.challenge.placesmanagement.service.PlaceService;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -106,7 +105,7 @@ public class PlaceControllerTest {
                                         .build();
 
         mockMvc.perform(post(PlaceController.BASE_URL)
-                .contentType(MediaType.APPLICATION_JSON_VALUE)
+                .contentType(MediaType.APPLICATION_JSON)
                 .content(jsonMapper.writeValueAsString(badPlaceRequest)))
                 .andExpect(status().isBadRequest());
     }
@@ -116,7 +115,7 @@ public class PlaceControllerTest {
         when(placeService.create(any())).thenThrow(ResourceNotFoundException.class);
 
         mockMvc.perform(post(PlaceController.BASE_URL)
-                .contentType(MediaType.APPLICATION_JSON_VALUE)
+                .contentType(MediaType.APPLICATION_JSON)
                 .content(jsonMapper.writeValueAsString(placeRequest)))
                 .andExpect(status().isNotFound());
     }
@@ -126,7 +125,7 @@ public class PlaceControllerTest {
         when(placeService.create(any())).thenReturn(placeResponse);
 
         mockMvc.perform(post(PlaceController.BASE_URL)
-                .contentType(MediaType.APPLICATION_JSON_VALUE)
+                .contentType(MediaType.APPLICATION_JSON)
                 .content(jsonMapper.writeValueAsString(placeRequest)))
                 .andExpect(status().isCreated())
                 .andExpect(jsonPath("$.id", equalTo(1)))
@@ -140,32 +139,13 @@ public class PlaceControllerTest {
     }
 
     @Test
-    public void shouldCreatePlaceWithXmlRequest() throws Exception {
-        StringWriter writerXml = new StringWriter();
-        JAXB.marshal(placeRequest, writerXml);
-
-        when(placeService.create(any())).thenReturn(placeResponse);
-
-        mockMvc.perform(post(PlaceController.BASE_URL)
-                .contentType(MediaType.APPLICATION_XML_VALUE)
-                .content(writerXml.toString()))
-                .andExpect(status().isCreated());
-    }
-
-
-    @Test
     public void shouldReturnNotFoundPlaceWithInvalidId() throws Exception {
         when(placeService.findById(anyLong())).thenThrow(ResourceNotFoundException.class);
 
         mockMvc.perform(get(PlaceController.BASE_URL.concat("/1"))
-                .contentType(MediaType.APPLICATION_JSON_VALUE))
+                .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isNotFound())
-                .andExpect(jsonPath("$",
-                        equalTo(Error.builder()
-                                    .message("Resource Not Found")
-                                    .build().toString()
-                        )
-                ));
+                .andExpect(jsonPath("$.message", equalTo("Resource Not Found")));
     }
 
     @Test
@@ -173,7 +153,7 @@ public class PlaceControllerTest {
         when(placeService.findById(anyLong())).thenReturn(placeResponse);
 
         mockMvc.perform(get(PlaceController.BASE_URL.concat("/1"))
-                .contentType(MediaType.APPLICATION_JSON_VALUE))
+                .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.id", equalTo(1)))
                 .andExpect(jsonPath("$.name", equalTo("Parque Ibirapuera")))
@@ -192,7 +172,7 @@ public class PlaceControllerTest {
                 .build();
 
         mockMvc.perform(put(PlaceController.BASE_URL.concat("/1"))
-                .contentType(MediaType.APPLICATION_JSON_VALUE)
+                .contentType(MediaType.APPLICATION_JSON)
                 .content(jsonMapper.writeValueAsString(badPlaceRequest)))
                 .andExpect(status().isBadRequest());
     }
@@ -202,7 +182,7 @@ public class PlaceControllerTest {
         when(placeService.update(anyLong(), any())).thenThrow(ResourceNotFoundException.class);
 
         mockMvc.perform(put(PlaceController.BASE_URL.concat("/1"))
-                .contentType(MediaType.APPLICATION_JSON_VALUE)
+                .contentType(MediaType.APPLICATION_JSON)
                 .content(jsonMapper.writeValueAsString(placeRequest)))
                 .andExpect(status().isNotFound());
     }
@@ -212,7 +192,7 @@ public class PlaceControllerTest {
         when(placeService.update(anyLong(), any())).thenReturn(placeResponse);
 
         mockMvc.perform(put(PlaceController.BASE_URL.concat("/1"))
-                .contentType(MediaType.APPLICATION_JSON_VALUE)
+                .contentType(MediaType.APPLICATION_JSON)
                 .content(jsonMapper.writeValueAsString(placeRequest)))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.id", equalTo(1)))
@@ -226,26 +206,11 @@ public class PlaceControllerTest {
     }
 
     @Test
-    public void shouldUpdatePlaceWithXmlRequest() throws Exception {
-        StringWriter writerXml = new StringWriter();
-        JAXB.marshal(placeRequest, writerXml);
-
-        when(placeService.update(anyLong(), any())).thenReturn(placeResponse);
-
-        mockMvc.perform(put(PlaceController.BASE_URL.concat("/1"))
-                .contentType(MediaType.APPLICATION_XML_VALUE)
-                .content(writerXml.toString()))
-                .andExpect(status().isOk());
-    }
-
-
-
-    @Test
     public void shouldReturnAllPlacesUsingBaseURLPath() throws Exception {
         when(placeService.findAll()).thenReturn(placesResponse);
 
         mockMvc.perform(get(PlaceController.BASE_URL)
-                .contentType(MediaType.APPLICATION_JSON_VALUE))
+                .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.[0].id", equalTo(1)))
                 .andExpect(jsonPath("$.[0].name", equalTo("Parque Ibirapuera")))
@@ -253,7 +218,8 @@ public class PlaceControllerTest {
                 .andExpect(jsonPath("$.[0].city.id", equalTo(1)))
                 .andExpect(jsonPath("$.[0].city.name", equalTo("São Paulo")))
                 .andExpect(jsonPath("$.[0].city.state.id", equalTo(1)))
-                .andExpect(jsonPath("$.[0].city.state.name", equalTo("São Paulo")))
+                .andEx
+    pect(jsonPath("$.[0].city.state.name", equalTo("São Paulo")))
                 .andExpect(jsonPath("$.[0].city.state.abbreviation", equalTo("SP")))
                 .andExpect(jsonPath("$.[1].name", equalTo("Shopping Ibirapuera")))
                 .andExpect(jsonPath("$.[2].name", equalTo("Avenida Paulista")));
@@ -264,7 +230,7 @@ public class PlaceControllerTest {
         when(placeService.findAll()).thenReturn(placesResponse);
 
         mockMvc.perform(get(PlaceController.BASE_URL.concat("/list"))
-                .contentType(MediaType.APPLICATION_JSON_VALUE))
+                .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.[0].id", equalTo(1)))
                 .andExpect(jsonPath("$.[0].name", equalTo("Parque Ibirapuera")))
@@ -286,7 +252,7 @@ public class PlaceControllerTest {
                             .collect(Collectors.toList()));
 
         mockMvc.perform(get(PlaceController.BASE_URL.concat("/list/").concat("ibirapuera"))
-                .contentType(MediaType.APPLICATION_JSON_VALUE))
+                .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.[0].id", equalTo(1)))
                 .andExpect(jsonPath("$.[0].name", equalTo("Parque Ibirapuera")))

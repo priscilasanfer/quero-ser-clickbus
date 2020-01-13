@@ -3,7 +3,6 @@ package com.clickbus.challenge.placesmanagement.controller;
 import com.clickbus.challenge.placesmanagement.dto.request.CityRequest;
 import com.clickbus.challenge.placesmanagement.dto.response.CityResponse;
 import com.clickbus.challenge.placesmanagement.dto.response.StateResponse;
-import com.clickbus.challenge.placesmanagement.exception.Error;
 import com.clickbus.challenge.placesmanagement.exception.ResponseEntityExceptionHandler;
 import com.clickbus.challenge.placesmanagement.service.CityService;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -16,9 +15,6 @@ import org.springframework.data.rest.webmvc.ResourceNotFoundException;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
-
-import javax.xml.bind.JAXB;
-import java.io.StringWriter;
 
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.mockito.ArgumentMatchers.any;
@@ -76,7 +72,7 @@ public class CityControllerTest {
                                         .build();
 
         mockMvc.perform(post(CityController.BASE_URL)
-                .contentType(MediaType.APPLICATION_JSON_VALUE)
+                .contentType(MediaType.APPLICATION_JSON)
                 .content(jsonMapper.writeValueAsString(badCityRequest)))
                 .andExpect(status().isBadRequest());
     }
@@ -86,7 +82,7 @@ public class CityControllerTest {
         when(cityService.create(any())).thenThrow(ResourceNotFoundException.class);
 
         mockMvc.perform(post(CityController.BASE_URL)
-                .contentType(MediaType.APPLICATION_JSON_VALUE)
+                .contentType(MediaType.APPLICATION_JSON)
                 .content(jsonMapper.writeValueAsString(cityRequest)))
                 .andExpect(status().isNotFound());
     }
@@ -96,7 +92,7 @@ public class CityControllerTest {
         when(cityService.create(any())).thenReturn(cityResponse);
 
         mockMvc.perform(post(CityController.BASE_URL)
-                .contentType(MediaType.APPLICATION_JSON_VALUE)
+                .contentType(MediaType.APPLICATION_JSON)
                 .content(jsonMapper.writeValueAsString(cityRequest)))
                 .andExpect(status().isCreated())
                 .andExpect(jsonPath("$.id", equalTo(1)))
@@ -107,32 +103,14 @@ public class CityControllerTest {
     }
 
     @Test
-    public void shouldCreateCityWithXmlRequest() throws Exception {
-        StringWriter writerXml = new StringWriter();
-        JAXB.marshal(cityRequest, writerXml);
-
-        when(cityService.create(any())).thenReturn(cityResponse);
-
-        mockMvc.perform(post(CityController.BASE_URL)
-                .contentType(MediaType.APPLICATION_XML_VALUE)
-                .content(writerXml.toString()))
-                .andExpect(status().isCreated());
-    }
-
-
-    @Test
     public void shouldReturnNotFoundCityWithInvalidId() throws Exception {
         when(cityService.findById(anyLong())).thenThrow(ResourceNotFoundException.class);
 
         mockMvc.perform(get(CityController.BASE_URL.concat("/1"))
-                .contentType(MediaType.APPLICATION_JSON_VALUE))
+                .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isNotFound())
-                .andExpect(jsonPath("$",
-                        equalTo(Error.builder()
-                                    .message("Resource Not Found")
-                                    .build().toString()
-                        )
-                ));
+                .andExpect(jsonPath("$.message", equalTo("Resource Not Found")));
+
     }
 
     @Test
@@ -140,7 +118,7 @@ public class CityControllerTest {
         when(cityService.findById(anyLong())).thenReturn(cityResponse);
 
         mockMvc.perform(get(CityController.BASE_URL.concat("/1"))
-                .contentType(MediaType.APPLICATION_JSON_VALUE))
+                .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.id", equalTo(1)))
                 .andExpect(jsonPath("$.name", equalTo("São Paulo")))
