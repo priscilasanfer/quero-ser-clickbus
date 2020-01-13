@@ -1,0 +1,291 @@
+{
+	"info": {
+		"_postman_id": "2552d01a-c596-4bb5-b144-0f8100243727",
+		"name": "places-management",
+		"description": "This is a collection that you can use to validate the endpoints of the places-management Api.",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Place",
+			"item": [
+				{
+					"name": "Create place",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"Parque Ibirapuera\",\n    \"cityId\": 1\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8080/places",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"places"
+							]
+						},
+						"description": "Here we're sending the Place information (name, cityId). All of this is being sent in the body of the request (json or xml). The API then receives it and, if everything is correct, registers it as a new place and returns a json or xml containing the information we sent along with an id. In case there's any incorrect info, the API is going to return a message saying what's wrong with the inputs (BAD\\_REQUEST) or in case of the cityId doesn't exist will return HTTP response NOT\\_FOUND.\n\nInfo being validated:\n\nname - cannot be null, also must not be less than 2 characters\n\ncityId - cannot be null and must exist"
+					},
+					"response": []
+				},
+				{
+					"name": "Update place",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{   \n    \"name\": \"Shopping Ibirapuera\",\n    \"cityId\": 1\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8080/places/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"places",
+								"1"
+							]
+						},
+						"description": "Here we're sending the an Id as PathVariable and a Place information (name, cityId) in the body(json or xml). The API then receives it and, if everything is correct, updates an existing place and returns a json or xml containing the information we sent along the id. In case there's any incorrect info, the API is going to return a message saying what's wrong with the inputs (BAD\\_REQUEST) or in case of the cityId or the id pass in the PathVariable doesn't exist will return HTTP response NOT\\_FOUND.\n\nInfo being validated:\nid - must exist\n\nname - cannot be null, also must not be less than 2 characters\n\ncityId - cannot be null and must exist"
+					},
+					"response": []
+				},
+				{
+					"name": "Get place by Id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/places/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"places",
+								"1"
+							]
+						},
+						"description": "Here we're sending the place id in the PathVariable. The API receives it and, if everything is correct, returns a json or xml containing all the place information. In case the API couldn't find the place id sent, it's going to return a HTTP response NOT\\_FOUND."
+					},
+					"response": []
+				},
+				{
+					"name": "Get places by Name",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/places/list/Ibirapuera",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"places",
+								"list",
+								"Ibirapuera"
+							]
+						},
+						"description": "Here we're sending the place name in the params of the request. The API receives it and, if everything is correct, returns a json or xml containing all the place information. In case the API couldn't find any place by the name sent, it's going to return an empty list."
+					},
+					"response": []
+				},
+				{
+					"name": "Get places",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/places",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"places"
+							]
+						},
+						"description": "Here we're sending only a simple get, the API receives it and, returns a json or xml containing all the places information."
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "City",
+			"item": [
+				{
+					"name": "Get city by Id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/cities/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"cities",
+								"1"
+							]
+						},
+						"description": "Here we're sending the city id in the params of the request. The API receives it and, if everything is correct, returns a json or xml containing all the city information. In case the API couldn't find the city id sent, it's going to return a HTTP response NOT\\_FOUND."
+					},
+					"response": []
+				},
+				{
+					"name": "Create city",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"name\": \"São Paulo\",\n\t\"stateId\": 1\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8080/cities",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"cities"
+							]
+						},
+						"description": "Here we're sending the City information (name and stateId). All of this is being sent in the body of the request (json or xml). The API then receives it and, if everything is correct, registers it as a new city and returns a json or xml containing the information we sent along with an id. In case there's any incorrect info, the API is going to return a message saying what's wrong with the inputs (BAD\\_REQUEST) or in case of the stateId doesn't exist will return HTTP response NOT\\_FOUND.\n\nInfo being validated:\n\nname - cannot be null, also must not be less than 2 characters\n\nstateId - cannot be null and must exist"
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "State",
+			"item": [
+				{
+					"name": "Get state by Id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8080/states/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"states",
+								"1"
+							]
+						},
+						"description": "Here we're sending the state id in the params of the request. The API receives it and, if everything is correct, returns a json or xml containing all the state information. In case the API couldn't find the state id sent, it's going to return a HTTP response NOT\\_FOUND."
+					},
+					"response": []
+				},
+				{
+					"name": "Create state Json",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"São Paulo\",\n    \"abbreviation\": \"SP\"\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8080/states",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"states"
+							]
+						},
+						"description": "Here we're sending the state information (name and abbreviation). All of this is being sent in the body of the request json. The API then receives it and, if everything is correct, registers it as a new state and returns a json or xml containing the information we sent along with an id. In case there's any incorrect info, the API is going to return a message saying what's wrong with the inputs (BAD\\_REQUEST).\n\nInfo being validated:\n\nname - cannot be null, also must not be less than 2 characters\n\nabbreviation - cannot be null, also must not be equal to 2 characters"
+					},
+					"response": []
+				},
+				{
+					"name": "Create state XML",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/xml",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?>\n<cityRequest>\n    <name>Rio Grande do Norte</name>\n    <abbreviation>RN</abbreviation>\n</cityRequest>",
+							"options": {
+								"raw": {
+									"language": "xml"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:8080/states",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"states"
+							]
+						},
+						"description": "Here we're sending the state information (name and abbreviation). All of this is being sent in the body of the request xml. The API then receives it and, if everything is correct, registers it as a new state and returns a json or xml containing the information we sent along with an id. In case there's any incorrect info, the API is going to return a message saying what's wrong with the inputs (BAD\\_REQUEST).\n\nInfo being validated:\n\nname - cannot be null, also must not be less than 2 characters\n\nabbreviation - cannot be null, also must not be equal to 2 characters"
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
