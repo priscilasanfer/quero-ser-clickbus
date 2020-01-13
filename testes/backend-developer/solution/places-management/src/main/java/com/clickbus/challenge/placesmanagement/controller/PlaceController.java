@@ -5,7 +5,6 @@ import com.clickbus.challenge.placesmanagement.dto.response.PlaceResponse;
 import com.clickbus.challenge.placesmanagement.service.PlaceService;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -26,52 +25,31 @@ public class PlaceController {
 
     private final PlaceService placeService;
 
-    @PostMapping(
-            consumes = {
-                    MediaType.APPLICATION_JSON_VALUE,
-                    MediaType.APPLICATION_XML_VALUE},
-            produces = {
-                    MediaType.APPLICATION_JSON_VALUE,
-                    MediaType.APPLICATION_XML_VALUE})
+    @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
     public PlaceResponse createPlace(@Valid @RequestBody PlaceRequest placeRequest){
         return placeService.create(placeRequest);
     }
 
-    @PutMapping(path="/{id}",
-            consumes = {
-                    MediaType.APPLICATION_JSON_VALUE,
-                    MediaType.APPLICATION_XML_VALUE},
-            produces = {
-                    MediaType.APPLICATION_JSON_VALUE,
-                    MediaType.APPLICATION_XML_VALUE})
+    @PutMapping("/{id}")
     @ResponseStatus(HttpStatus.OK)
     public PlaceResponse updatePlace(@PathVariable Long id, @Valid @RequestBody PlaceRequest placeRequest){
         return placeService.update(id, placeRequest);
     }
 
-    @GetMapping(path="/{id}", produces = {
-            MediaType.APPLICATION_JSON_VALUE,
-            MediaType.APPLICATION_XML_VALUE
-    })
+    @GetMapping("/{id}")
     @ResponseStatus(HttpStatus.OK)
     public PlaceResponse getPlaceById(@PathVariable("id") Long id) {
         return placeService.findById(id);
     }
 
-    @GetMapping(path="/list/{name}", produces = {
-            MediaType.APPLICATION_JSON_VALUE,
-            MediaType.APPLICATION_XML_VALUE
-    })
+    @GetMapping("/list/{name}")
     @ResponseStatus(HttpStatus.OK)
     public List<PlaceResponse> getPlaceByName(@PathVariable("name") String name) {
         return placeService.findByName(name);
     }
 
-    @GetMapping(path = {"", "/list"},
-            produces = {
-                    MediaType.APPLICATION_JSON_VALUE,
-                    MediaType.APPLICATION_XML_VALUE})
+    @GetMapping({"", "/list"})
     @ResponseStatus(HttpStatus.OK)
     public List<PlaceResponse> getPlaces() {
         return placeService.findAll();

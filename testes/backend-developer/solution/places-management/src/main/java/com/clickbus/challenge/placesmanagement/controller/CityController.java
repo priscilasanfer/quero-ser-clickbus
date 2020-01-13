@@ -5,7 +5,6 @@ import com.clickbus.challenge.placesmanagement.dto.response.CityResponse;
 import com.clickbus.challenge.placesmanagement.service.CityService;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -24,22 +23,13 @@ public class CityController {
 
     private final CityService cityService;
 
-    @PostMapping(
-            consumes = {
-                    MediaType.APPLICATION_JSON_VALUE,
-                    MediaType.APPLICATION_XML_VALUE},
-            produces = {
-                    MediaType.APPLICATION_JSON_VALUE,
-                    MediaType.APPLICATION_XML_VALUE})
+    @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
     public CityResponse createCity(@Valid @RequestBody CityRequest cityRequest){
         return cityService.create(cityRequest);
     }
 
-    @GetMapping(path="/{id}", produces = {
-            MediaType.APPLICATION_JSON_VALUE,
-            MediaType.APPLICATION_XML_VALUE
-    })
+    @GetMapping("/{id}")
     @ResponseStatus(HttpStatus.OK)
     public CityResponse getCityById(@PathVariable("id") Long id) {
         return cityService.findById(id);
