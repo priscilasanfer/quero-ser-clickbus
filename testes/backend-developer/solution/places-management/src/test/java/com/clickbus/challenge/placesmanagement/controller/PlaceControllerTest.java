@@ -218,8 +218,7 @@ public class PlaceControllerTest {
                 .andExpect(jsonPath("$.[0].city.id", equalTo(1)))
                 .andExpect(jsonPath("$.[0].city.name", equalTo("São Paulo")))
                 .andExpect(jsonPath("$.[0].city.state.id", equalTo(1)))
-                .andEx
-    pect(jsonPath("$.[0].city.state.name", equalTo("São Paulo")))
+                .andExpect(jsonPath("$.[0].city.state.name", equalTo("São Paulo")))
                 .andExpect(jsonPath("$.[0].city.state.abbreviation", equalTo("SP")))
                 .andExpect(jsonPath("$.[1].name", equalTo("Shopping Ibirapuera")))
                 .andExpect(jsonPath("$.[2].name", equalTo("Avenida Paulista")));
