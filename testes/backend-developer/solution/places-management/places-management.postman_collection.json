@@ -36,7 +36,7 @@
 								"places"
 							]
 						},
-						"description": "Here we're sending the Place information (name, cityId). All of this is being sent in the body of the request (json or xml). The API then receives it and, if everything is correct, registers it as a new place and returns a json or xml containing the information we sent along with an id. In case there's any incorrect info, the API is going to return a message saying what's wrong with the inputs (BAD\\_REQUEST) or in case of the cityId doesn't exist will return HTTP response NOT\\_FOUND.\n\nInfo being validated:\n\nname - cannot be null, also must not be less than 2 characters\n\ncityId - cannot be null and must exist"
+						"description": "Here we're sending the Place information (name, cityId). All of this is being sent in the body of the request (json). The API then receives it and, if everything is correct, registers it as a new place and returns a json containing the information we sent along with an id. In case there's any incorrect info, the API is going to return a message saying what's wrong with the inputs (BAD\\_REQUEST) or in case of the cityId doesn't exist will return HTTP response NOT\\_FOUND.\n\nInfo being validated:\n\nname - cannot be null, also must not be less than 2 characters\n\ncityId - cannot be null and must exist"
 					},
 					"response": []
 				},
@@ -68,7 +68,7 @@
 								"1"
 							]
 						},
-						"description": "Here we're sending the an Id as PathVariable and a Place information (name, cityId) in the body(json or xml). The API then receives it and, if everything is correct, updates an existing place and returns a json or xml containing the information we sent along the id. In case there's any incorrect info, the API is going to return a message saying what's wrong with the inputs (BAD\\_REQUEST) or in case of the cityId or the id pass in the PathVariable doesn't exist will return HTTP response NOT\\_FOUND.\n\nInfo being validated:\nid - must exist\n\nname - cannot be null, also must not be less than 2 characters\n\ncityId - cannot be null and must exist"
+						"description": "Here we're sending the an Id as PathVariable and a Place information (name, cityId) in the body(json). The API then receives it and, if everything is correct, updates an existing place and returns a json containing the information we sent along the id. In case there's any incorrect info, the API is going to return a message saying what's wrong with the inputs (BAD\\_REQUEST) or in case of the cityId or the id pass in the PathVariable doesn't exist will return HTTP response NOT\\_FOUND.\n\nInfo being validated:\nid - must exist\n\nname - cannot be null, also must not be less than 2 characters\n\ncityId - cannot be null and must exist"
 					},
 					"response": []
 				},
@@ -89,7 +89,7 @@
 								"1"
 							]
 						},
-						"description": "Here we're sending the place id in the PathVariable. The API receives it and, if everything is correct, returns a json or xml containing all the place information. In case the API couldn't find the place id sent, it's going to return a HTTP response NOT\\_FOUND."
+						"description": "Here we're sending the place id in the PathVariable. The API receives it and, if everything is correct, returns a json containing all the place information. In case the API couldn't find the place id sent, it's going to return a HTTP response NOT\\_FOUND."
 					},
 					"response": []
 				},
@@ -111,7 +111,7 @@
 								"Ibirapuera"
 							]
 						},
-						"description": "Here we're sending the place name in the params of the request. The API receives it and, if everything is correct, returns a json or xml containing all the place information. In case the API couldn't find any place by the name sent, it's going to return an empty list."
+						"description": "Here we're sending the place name in the params of the request. The API receives it and, if everything is correct, returns a json containing all the place information. In case the API couldn't find any place by the name sent, it's going to return an empty list."
 					},
 					"response": []
 				},
@@ -131,7 +131,7 @@
 								"places"
 							]
 						},
-						"description": "Here we're sending only a simple get, the API receives it and, returns a json or xml containing all the places information."
+						"description": "Here we're sending only a simple get, the API receives it and, returns a json containing all the places information."
 					},
 					"response": []
 				}
@@ -157,7 +157,7 @@
 								"1"
 							]
 						},
-						"description": "Here we're sending the city id in the params of the request. The API receives it and, if everything is correct, returns a json or xml containing all the city information. In case the API couldn't find the city id sent, it's going to return a HTTP response NOT\\_FOUND."
+						"description": "Here we're sending the city id in the params of the request. The API receives it and, if everything is correct, returns a json containing all the city information. In case the API couldn't find the city id sent, it's going to return a HTTP response NOT\\_FOUND."
 					},
 					"response": []
 				},
@@ -188,7 +188,7 @@
 								"cities"
 							]
 						},
-						"description": "Here we're sending the City information (name and stateId). All of this is being sent in the body of the request (json or xml). The API then receives it and, if everything is correct, registers it as a new city and returns a json or xml containing the information we sent along with an id. In case there's any incorrect info, the API is going to return a message saying what's wrong with the inputs (BAD\\_REQUEST) or in case of the stateId doesn't exist will return HTTP response NOT\\_FOUND.\n\nInfo being validated:\n\nname - cannot be null, also must not be less than 2 characters\n\nstateId - cannot be null and must exist"
+						"description": "Here we're sending the City information (name and stateId). All of this is being sent in the body of the request (json). The API then receives it and, if everything is correct, registers it as a new city and returns a json containing the information we sent along with an id. In case there's any incorrect info, the API is going to return a message saying what's wrong with the inputs (BAD\\_REQUEST) or in case of the stateId doesn't exist will return HTTP response NOT\\_FOUND.\n\nInfo being validated:\n\nname - cannot be null, also must not be less than 2 characters\n\nstateId - cannot be null and must exist"
 					},
 					"response": []
 				}
@@ -214,12 +214,12 @@
 								"1"
 							]
 						},
-						"description": "Here we're sending the state id in the params of the request. The API receives it and, if everything is correct, returns a json or xml containing all the state information. In case the API couldn't find the state id sent, it's going to return a HTTP response NOT\\_FOUND."
+						"description": "Here we're sending the state id in the params of the request. The API receives it and, if everything is correct, returns a json containing all the state information. In case the API couldn't find the state id sent, it's going to return a HTTP response NOT\\_FOUND."
 					},
 					"response": []
 				},
 				{
-					"name": "Create state Json",
+					"name": "Create state",
 					"request": {
 						"method": "POST",
 						"header": [
@@ -245,43 +245,7 @@
 								"states"
 							]
 						},
-						"description": "Here we're sending the state information (name and abbreviation). All of this is being sent in the body of the request json. The API then receives it and, if everything is correct, registers it as a new state and returns a json or xml containing the information we sent along with an id. In case there's any incorrect info, the API is going to return a message saying what's wrong with the inputs (BAD\\_REQUEST).\n\nInfo being validated:\n\nname - cannot be null, also must not be less than 2 characters\n\nabbreviation - cannot be null, also must not be equal to 2 characters"
-					},
-					"response": []
-				},
-				{
-					"name": "Create state XML",
-					"request": {
-						"method": "POST",
-						"header": [
-							{
-								"key": "Content-Type",
-								"name": "Content-Type",
-								"value": "application/xml",
-								"type": "text"
-							}
-						],
-						"body": {
-							"mode": "raw",
-							"raw": "<?xml version=\"1.0\" encoding=\"UTF-8\" standalone=\"yes\"?>\n<cityRequest>\n    <name>Rio Grande do Norte</name>\n    <abbreviation>RN</abbreviation>\n</cityRequest>",
-							"options": {
-								"raw": {
-									"language": "xml"
-								}
-							}
-						},
-						"url": {
-							"raw": "http://localhost:8080/states",
-							"protocol": "http",
-							"host": [
-								"localhost"
-							],
-							"port": "8080",
-							"path": [
-								"states"
-							]
-						},
-						"description": "Here we're sending the state information (name and abbreviation). All of this is being sent in the body of the request xml. The API then receives it and, if everything is correct, registers it as a new state and returns a json or xml containing the information we sent along with an id. In case there's any incorrect info, the API is going to return a message saying what's wrong with the inputs (BAD\\_REQUEST).\n\nInfo being validated:\n\nname - cannot be null, also must not be less than 2 characters\n\nabbreviation - cannot be null, also must not be equal to 2 characters"
+						"description": "Here we're sending the state information (name and abbreviation). All of this is being sent in the body of the request (json). The API then receives it and, if everything is correct, registers it as a new state and returns a json containing the information we sent along with an id. In case there's any incorrect info, the API is going to return a message saying what's wrong with the inputs (BAD\\_REQUEST).\n\nInfo being validated:\n\nname - cannot be null, also must not be less than 2 characters\n\nabbreviation - cannot be null, also must not be equal to 2 characters"
 					},
 					"response": []
 				}
