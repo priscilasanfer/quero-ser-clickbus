@@ -4,7 +4,7 @@ import com.clickbus.challenge.placesmanagement.domain.City;
 import com.clickbus.challenge.placesmanagement.domain.Place;
 import com.clickbus.challenge.placesmanagement.domain.State;
 import com.clickbus.challenge.placesmanagement.dto.response.PlaceResponse;
-import org.junit.jupiter.api.Test;
+import org.junit.Test;
 
 import java.util.Date;
 

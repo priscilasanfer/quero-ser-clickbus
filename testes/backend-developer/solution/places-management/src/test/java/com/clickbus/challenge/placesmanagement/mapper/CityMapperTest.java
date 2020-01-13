@@ -3,7 +3,7 @@ package com.clickbus.challenge.placesmanagement.mapper;
 import com.clickbus.challenge.placesmanagement.domain.City;
 import com.clickbus.challenge.placesmanagement.domain.State;
 import com.clickbus.challenge.placesmanagement.dto.response.CityResponse;
-import org.junit.jupiter.api.Test;
+import org.junit.Test;
 
 import java.util.Date;
 

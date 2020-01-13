@@ -1,13 +1,13 @@
 package com.clickbus.challenge.placesmanagement;
 
-import org.junit.jupiter.api.Test;
+import org.junit.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class PlacesManagementApplicationTests {
+public class PlacesManagementApplicationTests {
 
     @Test
-    void contextLoads() {
+    public void contextLoads() {
     }
 
 }

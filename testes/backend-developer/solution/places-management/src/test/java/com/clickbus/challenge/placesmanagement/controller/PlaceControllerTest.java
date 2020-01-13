@@ -17,8 +17,6 @@ import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 
-import javax.xml.bind.JAXB;
-import java.io.StringWriter;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
