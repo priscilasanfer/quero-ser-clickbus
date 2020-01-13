@@ -68,7 +68,7 @@ public class PlaceController {
         return placeService.findByName(name);
     }
 
-    @GetMapping(path = {"/", "/list"},
+    @GetMapping(path = {"", "/list"},
             produces = {
                     MediaType.APPLICATION_JSON_VALUE,
                     MediaType.APPLICATION_XML_VALUE})
