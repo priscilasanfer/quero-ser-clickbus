@@ -15,7 +15,6 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EntityListeners;
 import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -31,7 +30,7 @@ import java.util.Date;
 @EntityListeners(AuditingEntityListener.class)
 public class City implements Comparable<City> {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(generator="optimized-sequence")
     private Long id;
 
     @NotNull(message = "Name cannot be null")
