@@ -52,7 +52,7 @@ public class PlaceService {
     }
 
     public List<PlaceResponse> findByName(String name) {
-        return placeRepository.findByName(name).stream()
+        return placeRepository.findByNameContainingIgnoreCase(name).stream()
                 .map(place -> PlaceMapper.INSTANCE.placeToPlaceResponse(place))
                 .collect(Collectors.toList());
     }

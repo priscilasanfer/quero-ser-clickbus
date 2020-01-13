@@ -131,7 +131,7 @@ public class PlaceServiceTest {
                         .map(place -> PlaceMapper.INSTANCE.placeToPlaceResponse(place))
                         .collect(Collectors.toList());
 
-        when(placeRepository.findByName(anyString())).thenReturn(places);
+        when(placeRepository.findByNameContainingIgnoreCase(anyString())).thenReturn(places);
 
         List<PlaceResponse> actualPlacesResponse = placeService.findByName("ibirapuera");
 
