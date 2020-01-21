@@ -47,7 +47,7 @@ public class StateControllerTest {
                 .build();
 
         stateResponse = StateResponse.builder()
-                .id(new Long(1))
+                .id(1L)
                 .name("São Paulo")
                 .abbreviation("SP")
                 .build();

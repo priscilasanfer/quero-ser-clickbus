@@ -47,10 +47,10 @@ public class PlaceServiceTest {
     @Before
     public void setUp() {
         city = City.builder()
-            .id(new Long(1))
+            .id(1L)
             .name("São Paulo")
             .state(State.builder()
-                    .id(new Long(1))
+                    .id(1L)
                     .name("São Paulo")
                     .abbreviation("SP")
                     .createdAt(new Date())
@@ -62,11 +62,11 @@ public class PlaceServiceTest {
 
         placeRequest = PlaceRequest.builder()
                 .name("Parque Ibirapuera")
-                .cityId(new Long(1))
+                .cityId(1L)
                 .build();
 
         place = Place.builder()
-                .id(new Long(1))
+                .id(1L)
                 .name("Parque Ibirapuera")
                 .slug("parque-ibirapuera")
                 .city(city)
@@ -102,7 +102,7 @@ public class PlaceServiceTest {
     public void shouldReturnPlaceWithValidId() {
         when(placeRepository.findById(anyLong())).thenReturn(Optional.of(place));
 
-        PlaceResponse actualPlaceResponse = placeService.findById(new Long(1));
+        PlaceResponse actualPlaceResponse = placeService.findById(1L);
 
         assertThat(actualPlaceResponse, is(placeResponse));
     }
@@ -111,7 +111,7 @@ public class PlaceServiceTest {
     public void shouldCreateThrowsResourceNotFoundExceptionWithInvalidId() {
         when(placeRepository.findById(anyLong())).thenThrow(ResourceNotFoundException.class);
 
-        placeService.findById(new Long(1));
+        placeService.findById(1L);
     }
 
     @Test
@@ -166,7 +166,7 @@ public class PlaceServiceTest {
     public void shouldUpdateThrowsResourceNotFoundExceptionWithInvalidId()  {
         when(placeRepository.findById(anyLong())).thenThrow(ResourceNotFoundException.class);
 
-        placeService.update(new Long(1), placeRequest);
+        placeService.update(1L, placeRequest);
     }
 
     @Test
@@ -175,7 +175,7 @@ public class PlaceServiceTest {
         when(placeRepository.findById(anyLong())).thenReturn(Optional.of(place));
         when(placeRepository.save(any())).thenReturn(place);
 
-        PlaceResponse actualPlaceResponse = placeService.update(new Long(1), placeRequest);
+        PlaceResponse actualPlaceResponse = placeService.update(1L, placeRequest);
 
         assertThat(actualPlaceResponse, is(placeResponse));
     }

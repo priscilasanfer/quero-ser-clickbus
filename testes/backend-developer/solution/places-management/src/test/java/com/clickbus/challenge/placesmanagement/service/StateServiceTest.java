@@ -41,7 +41,7 @@ public class StateServiceTest {
             .build();
 
         state = State.builder()
-            .id(new Long(1))
+            .id(1L)
             .name("São Paulo")
             .abbreviation("SP")
             .createdAt(new Date())
@@ -68,7 +68,7 @@ public class StateServiceTest {
     public void shouldReturnStateWithValidId() {
         when(stateRepository.findById(anyLong())).thenReturn(Optional.of(state));
 
-        StateResponse actualStateResponse = stateService.findById(new Long(1));
+        StateResponse actualStateResponse = stateService.findById(1L);
 
         assertThat(actualStateResponse, is(stateResponse));
     }
@@ -77,7 +77,7 @@ public class StateServiceTest {
     public void shouldThrowsResourceNotFoundExceptionWithInvalidId() {
         when(stateRepository.findById(anyLong())).thenThrow(ResourceNotFoundException.class);
 
-        stateService.findById(new Long(1));
+        stateService.findById(1L);
     }
 
 

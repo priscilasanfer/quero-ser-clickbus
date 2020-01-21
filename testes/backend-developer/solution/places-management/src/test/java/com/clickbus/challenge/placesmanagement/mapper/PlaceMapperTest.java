@@ -15,14 +15,14 @@ public class PlaceMapperTest {
     @Test
     public void shouldMapPlaceToPlaceResponse() {
         Place place = Place.builder()
-                .id(new Long(1))
+                .id(1L)
                 .name("Parque Ibirapuera")
                 .slug("parque-ibirapuera")
                 .city(City.builder()
-                        .id(new Long(1))
+                        .id(1L)
                         .name("São Paulo")
                         .state(State.builder()
-                                .id(new Long(1))
+                                .id(1L)
                                 .name("São Paulo")
                                 .abbreviation("SP")
                                 .createdAt(new Date())

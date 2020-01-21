@@ -14,10 +14,10 @@ public class CityMapperTest {
     @Test
     public void shouldMapCityToCityResponse() {
         City city = City.builder()
-                .id(new Long(1))
+                .id(1L)
                 .name("São Paulo")
                 .state(State.builder()
-                        .id(new Long(1))
+                        .id(1L)
                         .name("São Paulo")
                         .abbreviation("SP")
                         .createdAt(new Date())

@@ -51,10 +51,10 @@ public class PlaceControllerTest {
     @Before
     public void setUp() {
         CityResponse cityResponse = CityResponse.builder()
-                .id(new Long(1))
+                .id(1L)
                 .name("São Paulo")
                 .state(StateResponse.builder()
-                        .id(new Long(1))
+                        .id(1L)
                         .name("São Paulo")
                         .abbreviation("SP")
                         .build())
@@ -62,11 +62,11 @@ public class PlaceControllerTest {
 
         placeRequest = PlaceRequest.builder()
                 .name("Parque Ibirapuera")
-                .cityId(new Long(1))
+                .cityId(1L)
                 .build();
 
         placeResponse = PlaceResponse.builder()
-                .id(new Long(1))
+                .id(1L)
                 .name("Parque Ibirapuera")
                 .slug("parque-ibirapuera")
                 .city(cityResponse)

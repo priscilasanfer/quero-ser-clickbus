@@ -14,7 +14,7 @@ public class StateMapperTest {
     @Test
     public void shouldMapStateToStateResponse() {
         State state = State.builder()
-                .id(new Long(1))
+                .id(1L)
                 .name("São Paulo")
                 .abbreviation("SP")
                 .createdAt(new Date())

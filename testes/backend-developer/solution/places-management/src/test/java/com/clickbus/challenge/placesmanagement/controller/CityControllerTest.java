@@ -44,14 +44,14 @@ public class CityControllerTest {
     public void setUp() {
         cityRequest = CityRequest.builder()
                 .name("São Paulo")
-                .stateId(new Long(1))
+                .stateId(1L)
                 .build();
 
         cityResponse = CityResponse.builder()
-                .id(new Long(1))
+                .id(1L)
                 .name("São Paulo")
                 .state(StateResponse.builder()
-                        .id(new Long(1))
+                        .id(1L)
                         .name("São Paulo")
                         .abbreviation("SP")
                         .build())

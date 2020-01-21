@@ -42,7 +42,7 @@ public class CityServiceTest {
     @Before
     public void setUp() {
         state = State.builder()
-                .id(new Long(1))
+                .id(1L)
                 .name("São Paulo")
                 .abbreviation("SP")
                 .createdAt(new Date())
@@ -51,11 +51,11 @@ public class CityServiceTest {
 
         cityRequest = CityRequest.builder()
             .name("São Paulo")
-            .stateId(new Long(1))
+            .stateId(1L)
             .build();
 
         city = City.builder()
-            .id(new Long(1))
+            .id(1L)
             .name("São Paulo")
             .state(state)
             .createdAt(new Date())
@@ -90,7 +90,7 @@ public class CityServiceTest {
     public void shouldReturnCityWithValidId() {
         when(cityRepository.findById(anyLong())).thenReturn(Optional.of(city));
 
-        CityResponse actualCityResponse = cityService.findById(new Long(1));
+        CityResponse actualCityResponse = cityService.findById(1L);
 
         assertThat(actualCityResponse, is(cityResponse));
     }
@@ -99,7 +99,7 @@ public class CityServiceTest {
     public void shouldThrowsResourceNotFoundExceptionWithInvalidId() {
         when(cityRepository.findById(anyLong())).thenThrow(ResourceNotFoundException.class);
 
-        cityService.findById(new Long(1));
+        cityService.findById(1L);
     }
 
 
