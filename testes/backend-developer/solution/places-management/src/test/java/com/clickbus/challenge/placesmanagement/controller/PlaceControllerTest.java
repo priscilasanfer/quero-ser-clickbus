@@ -75,13 +75,13 @@ public class PlaceControllerTest {
         placesResponse = Arrays.asList(
                 placeResponse,
                 PlaceResponse.builder()
-                        .id(new Long(2))
+                        .id(2L)
                         .name("Shopping Ibirapuera")
                         .slug("shopping-ibirapuera")
                         .city(cityResponse)
                         .build(),
                 PlaceResponse.builder()
-                        .id(new Long(3))
+                        .id(3L)
                         .name("Avenida Paulista")
                         .slug("avenida-paulista")
                         .city(cityResponse)

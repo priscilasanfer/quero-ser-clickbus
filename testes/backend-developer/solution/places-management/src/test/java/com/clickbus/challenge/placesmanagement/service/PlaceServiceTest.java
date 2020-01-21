@@ -118,8 +118,9 @@ public class PlaceServiceTest {
     public void shouldReturnPlaceWithValidName() {
         List<Place> places = Arrays.asList(
                 place,
+
                 Place.builder()
-                        .id(new Long(2))
+                        .id(2L)
                         .name("Shopping Ibirapuera")
                         .slug("shopping-ibirapuera")
                         .city(city)
@@ -143,7 +144,7 @@ public class PlaceServiceTest {
         List<Place> places = Arrays.asList(
                 place,
                 Place.builder()
-                        .id(new Long(2))
+                        .id(2L)
                         .name("Shopping Ibirapuera")
                         .slug("shopping-ibirapuera")
                         .city(city)
