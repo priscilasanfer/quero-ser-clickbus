@@ -65,7 +65,7 @@ public class PlaceService {
         place.setName(placeRequest.getName());
         place.setSlug(slugify.slugify(place.getName()));
         place.setCity(cityRepository
-                .findById(id)
+                .findById(placeRequest.getCityId())
                 .orElseThrow(ResourceNotFoundException::new));
 
         place = placeRepository.save(place);
